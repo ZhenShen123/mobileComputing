@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">HWAuthenticate</string>
+    <string name="prompt_user_name">User Name</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in </string>
+    <string name="action_empty_username">please input username</string>
+    <string name="action_empty_password">please input password</string>
+    <string name="action_sign_in_error">not found the user Or password error!</string>
+    <string name="action_register">Register </string>
+    <string name="action_register_in_success"> Account created successfully,please login !</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="login_out">login out</string>
+    <string name="input_todo_details">please input todo things</string>
+    <string name="action_add">add</string>
+    <string name="title_remind">Your Remind Available!</string>
+    <string name="txt_ok">OK</string>
+    <string name="user_name_tips">Name:</string>
+    <string name="txt_delete">delete</string>
+    <string name="select_the_date_of_birth">Please select the date of birth</string>
+    <string name="app_logo_name">Reminder Application</string>
+    <string name="setting">setting</string>
+
+</resources>

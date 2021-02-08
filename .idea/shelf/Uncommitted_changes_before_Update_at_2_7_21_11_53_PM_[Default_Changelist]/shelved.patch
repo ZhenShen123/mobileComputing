@@ -1,0 +1,131 @@
+Index: app/src/main/res/layout/activity_register.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:paddingLeft=\"@dimen/activity_horizontal_margin\"\n    android:paddingTop=\"@dimen/activity_vertical_margin\"\n    android:paddingRight=\"@dimen/activity_horizontal_margin\"\n    android:paddingBottom=\"@dimen/activity_vertical_margin\"\n    tools:context=\".RegisterActivity\">\n\n    <ImageView\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:onClick=\"backPage\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        android:src=\"@drawable/vector_arrow_back\"\n        />\n\n    <EditText\n        android:id=\"@+id/username\"\n        android:layout_width=\"0dp\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginStart=\"24dp\"\n        android:layout_marginTop=\"96dp\"\n        android:layout_marginEnd=\"24dp\"\n        android:hint=\"@string/prompt_user_name\"\n        android:selectAllOnFocus=\"true\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n    <EditText\n        android:id=\"@+id/password\"\n        android:layout_width=\"0dp\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginStart=\"24dp\"\n        android:layout_marginTop=\"8dp\"\n        android:layout_marginEnd=\"24dp\"\n        android:hint=\"@string/prompt_password\"\n        android:imeOptions=\"actionDone\"\n        android:inputType=\"textPassword\"\n        android:selectAllOnFocus=\"true\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@+id/username\" />\n\n    <Button\n        android:id=\"@+id/b_register\"\n        android:layout_width=\"0dp\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"16dp\"\n        android:text=\"@string/action_register\"\n        android:textAllCaps=\"false\"\n        android:onClick=\"register\"\n        app:layout_constraintEnd_toEndOf=\"@+id/username\"\n        app:layout_constraintStart_toStartOf=\"@+id/username\"\n        app:layout_constraintTop_toBottomOf=\"@+id/password\" />\n\n    <androidx.core.widget.ContentLoadingProgressBar\n        android:id=\"@+id/loading\"\n        style=\"?android:attr/progressBarStyleLarge\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:visibility=\"gone\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        tools:visibility=\"visible\" />\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_register.xml	(revision fe156b88478856b9199d1545ee1c72aeef2a7dcd)
++++ app/src/main/res/layout/activity_register.xml	(date 1612713216000)
+@@ -1,9 +1,10 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
++    android:orientation="vertical"
+     android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingTop="@dimen/activity_vertical_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+@@ -14,27 +15,31 @@
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:onClick="backPage"
+-        app:layout_constraintTop_toTopOf="parent"
++        android:src="@drawable/vector_arrow_back"
+         app:layout_constraintStart_toStartOf="parent"
+-        android:src="@drawable/vector_arrow_back"
+-        />
++        app:layout_constraintTop_toTopOf="parent" />
++
++    <ImageView
++        android:id="@+id/iv_head"
++        android:layout_width="80dp"
++        android:layout_height="80dp"
++        android:layout_gravity="center_horizontal"
++        android:layout_marginTop="60dp"
++        android:src="@drawable/icon_user" />
+ 
+     <EditText
+         android:id="@+id/username"
+-        android:layout_width="0dp"
++        android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="24dp"
+-        android:layout_marginTop="96dp"
++        android:layout_marginTop="16dp"
+         android:layout_marginEnd="24dp"
+         android:hint="@string/prompt_user_name"
+-        android:selectAllOnFocus="true"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
++        android:selectAllOnFocus="true" />
+ 
+     <EditText
+         android:id="@+id/password"
+-        android:layout_width="0dp"
++        android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="24dp"
+         android:layout_marginTop="8dp"
+@@ -49,25 +54,14 @@
+ 
+     <Button
+         android:id="@+id/b_register"
+-        android:layout_width="0dp"
++        android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="16dp"
++        android:onClick="register"
+         android:text="@string/action_register"
+         android:textAllCaps="false"
+-        android:onClick="register"
+         app:layout_constraintEnd_toEndOf="@+id/username"
+         app:layout_constraintStart_toStartOf="@+id/username"
+         app:layout_constraintTop_toBottomOf="@+id/password" />
+ 
+-    <androidx.core.widget.ContentLoadingProgressBar
+-        android:id="@+id/loading"
+-        style="?android:attr/progressBarStyleLarge"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:visibility="gone"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        tools:visibility="visible" />
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_person_center.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<FrameLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:orientation=\"vertical\"\n    android:padding=\"16dp\"\n    tools:context=\".PersonCenterActivity\"\n    tools:ignore=\"ContentDescription\">\n\n    <ImageView\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:onClick=\"backPage\"\n        android:src=\"@drawable/vector_arrow_back\"\n        />\n\n    <ImageView\n        android:id=\"@+id/iv_head\"\n        android:layout_width=\"80dp\"\n        android:layout_height=\"80dp\"\n        android:layout_gravity=\"center_horizontal\"\n        android:layout_marginTop=\"60dp\"\n        tools:background=\"@android:color/black\" />\n\n    <EditText\n        android:id=\"@+id/username\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"152dp\"\n        android:hint=\"@string/prompt_user_name\"\n         />\n\n</FrameLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_person_center.xml	(revision fe156b88478856b9199d1545ee1c72aeef2a7dcd)
++++ app/src/main/res/layout/activity_person_center.xml	(date 1612713174000)
+@@ -12,8 +12,7 @@
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:onClick="backPage"
+-        android:src="@drawable/vector_arrow_back"
+-        />
++        android:src="@drawable/vector_arrow_back" />
+ 
+     <ImageView
+         android:id="@+id/iv_head"
+@@ -21,14 +20,13 @@
+         android:layout_height="80dp"
+         android:layout_gravity="center_horizontal"
+         android:layout_marginTop="60dp"
+-        tools:background="@android:color/black" />
++        android:src="@drawable/icon_user" />
+ 
+     <EditText
+         android:id="@+id/username"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="152dp"
+-        android:hint="@string/prompt_user_name"
+-         />
++        android:hint="@string/prompt_user_name" />
+ 
+ </FrameLayout>
+\ No newline at end of file
