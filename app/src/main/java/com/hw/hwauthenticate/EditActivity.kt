@@ -22,6 +22,10 @@ class EditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
+        deleteBtn.setOnClickListener{
+            RemindSQLiteHelper.deleteRemindData(mTodoBean!!.id)
+            toast(this,"the reminder has been deleted!")
+        }
         ivBackPage.setOnClickListener { finish() }
         tvAdd.setOnClickListener {
             if (edTodo.text.toString().isNotBlank()) {

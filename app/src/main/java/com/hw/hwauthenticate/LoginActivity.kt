@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
         }
         val userIds = SpUtils.getString(Constants.USER_ID_KEY)
         if (TextUtils.isEmpty(userIds)) {
-            toast(this, getString(R.string.action_sign_in_error))
+            toast(this, "Wrong username or password!")
             return
         }
         val array = userIds.split(",")
@@ -57,8 +57,7 @@ class LoginActivity : AppCompatActivity() {
                 return
             }
         }
-
-        toast(this, getString(R.string.action_sign_in_error))
+        toast(this,"Wrong username or password!")
     }
 
     fun register(view: View) {

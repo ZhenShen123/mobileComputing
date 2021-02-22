@@ -2,17 +2,21 @@ package com.hw.hwauthenticate.Bean
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.telephony.cdma.CdmaCellLocation
 
 /**
  * listView data bean
  */
-class ToDoBean(var id: Long, var read: Boolean = false, var date: String?, var details: String?) :
+class ToDoBean(var id: Long, var read: Boolean = false, var date: String?,
+               var details: String?, var location_x: Long, var location_y: Long) :
     Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readLong(),
         parcel.readByte() != 0.toByte(),
         parcel.readString(),
-        parcel.readString()
+        parcel.readString(),
+            parcel.readLong(),
+            parcel.readLong()
     ) {
     }
 

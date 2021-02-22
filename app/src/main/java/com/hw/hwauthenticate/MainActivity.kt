@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.hw.hwauthenticate.Bean.ToDoBean
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mToDoListAdapter: ToDoListAdapter
     private var itemPosition = -1
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         RemindSQLiteHelper.init(this)
@@ -74,7 +75,10 @@ class MainActivity : AppCompatActivity() {
                     SimpleDateFormat(
                         "yyyy-MM-dd H:mm:ss",
                         Locale.getDefault()
-                    ).format(date), it.content
+                    ).format(date),
+                        it.content,
+                        it.location_x,
+                        it.location_y
                 )
             )
         }

@@ -45,4 +45,38 @@
         android:padding="16dp"
         android:textSize="16sp" />
 
+    <RadioButton
+        android:id="@+id/deleteBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_delete" />
+
+    <TextView
+        android:id="@+id/LocationXTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="locationX" />
+
+    <EditText
+        android:id="@+id/locationXEV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="TBA" />
+
+    <TextView
+        android:id="@+id/locationYTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="locationY" />
+
+    <EditText
+        android:id="@+id/locationYEV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="TBA" />
+
 </LinearLayout>

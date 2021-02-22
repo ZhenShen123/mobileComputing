@@ -29,7 +29,7 @@ object RemindSQLiteHelper {
     fun addRemindData(remindData: RemindData) {
         val db = mRemindSQLite.writableDatabase
         val insert =
-            "insert into ${mRemindSQLite.getTableName()} (content,time) values ('${remindData.content}',${remindData.time})"
+            "insert into ${mRemindSQLite.getTableName()} (content,time,locationX,locationY) values ('${remindData.content}',${remindData.time},${remindData.location_x},${remindData.location_y})"
         db.execSQL(insert)
         db.close()
     }
@@ -46,7 +46,7 @@ object RemindSQLiteHelper {
     fun updateRemindData(id: Long, remindData: RemindData) {
         val db = mRemindSQLite.writableDatabase
         val sql =
-            "update ${mRemindSQLite.getTableName()} set content = '${remindData.content}',time = ${remindData.time},isRemind = ${remindData.isRemind} where id = $id"
+            "update ${mRemindSQLite.getTableName()} set content = '${remindData.content}',time = ${remindData.time},isRemind = ${remindData.isRemind},locationX = ${remindData.location_x},locationX = ${remindData.location_y} where id = $id"
         db.execSQL(sql)
         db.close()
     }
@@ -62,7 +62,9 @@ object RemindSQLiteHelper {
             val content = cursor.getString(cursor.getColumnIndex("content"))
             val time = cursor.getLong(cursor.getColumnIndex("time"))
             val isRemind = cursor.getInt(cursor.getColumnIndex("isRemind"))
-            list.add(RemindData(id, content, time, isRemind))
+            val location_x = cursor.getLong(cursor.getColumnIndex("locationX"))
+            val location_y = cursor.getLong(cursor.getColumnIndex("locationY"))
+            list.add(RemindData(id, content, time, isRemind, location_x, location_y))
         }
         cursor.close()
         db.close()
@@ -76,7 +78,7 @@ object RemindSQLiteHelper {
 
         private var TABLE_NAME = "Remind_$userId"
         private var CREATE_TABLE =
-            "create table if not exists $TABLE_NAME (id INTEGER primary key autoincrement, content TEXT,time INTEGER,isRemind NUMERIC)"
+            "create table if not exists $TABLE_NAME (id INTEGER primary key autoincrement, content TEXT,time INTEGER,isRemind NUMERIC,locationX INTEGER,locationY INTEGER)"
         private val DROP_TABLE = "drop table if exists $TABLE_NAME"
 
         override fun onCreate(db: SQLiteDatabase?) {
@@ -99,14 +101,18 @@ object RemindSQLiteHelper {
 
     }
 
-    data class RemindData(var content: String, var time: Long, var isRemind: Int = 0) {
+    data class RemindData(var content: String, var time: Long, var isRemind: Int = 0,
+                          var location_x: Long = 0, var location_y: Long = 0) {
 
         var id: Long = 0
 
-        constructor(id: Long, content: String, time: Long, isRemind: Int) : this(
+        constructor(id: Long, content: String, time: Long, isRemind: Int,
+        location_x: Long, location_y: Long) : this(
             content,
             time,
-            isRemind
+            isRemind,
+            location_x,
+            location_y
         ) {
             this.id = id
         }
