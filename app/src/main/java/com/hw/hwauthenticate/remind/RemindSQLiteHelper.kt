@@ -71,6 +71,28 @@ object RemindSQLiteHelper {
         return list
     }
 
+    @Synchronized
+    fun searchRemindDataByID(id: Long):RemindData{
+        //       val ret = SQLiteHelperOfReminder.DataOfReminder()
+        var ret: RemindData = RemindData("111",0,1,0,0)
+        val db = mRemindSQLite.writableDatabase
+        val sql =
+                "select * from ${mRemindSQLite.getTableName()} where id = $id"
+        val cursor: Cursor = db.rawQuery(sql, null)
+        while (cursor.moveToNext()) {
+            val id = cursor.getLong(cursor.getColumnIndex("id"))
+            val message = cursor.getString(cursor.getColumnIndex("content"))
+            val time = cursor.getLong(cursor.getColumnIndex("time"))
+            val isRemind = cursor.getInt(cursor.getColumnIndex("isRemind"))
+            val locationX = cursor.getLong(cursor.getColumnIndex("locationX"))
+            val locationY = cursor.getLong(cursor.getColumnIndex("locationY"))
+            ret = RemindData(id, message, time, isRemind, locationX, locationY)
+        }
+        cursor.close()
+        db.close()
+        return ret
+    }
+
     class RemindSQLite(
         context: Context?,
         userId: String

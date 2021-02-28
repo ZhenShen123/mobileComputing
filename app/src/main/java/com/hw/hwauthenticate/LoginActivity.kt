@@ -1,7 +1,11 @@
 package com.hw.hwauthenticate
 
 import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
@@ -28,8 +32,23 @@ class LoginActivity : AppCompatActivity() {
                     ), 999
             )
         }
-
+        NotificationChannel()
     }
+
+    private fun NotificationChannel()
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Notification"
+            val descriptionText = "notification"
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel("channel1", name, importance).apply {description = descriptionText}
+            channel.setSound(Uri.parse("android.resource://"
+                    + getPackageName() + "/" + R.raw.szzs), null)
+            val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
 
     fun login(view: View) {
         if (TextUtils.isEmpty(username.text)) {

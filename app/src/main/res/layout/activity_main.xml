@@ -26,13 +26,31 @@
             android:paddingEnd="8dp"
             android:text="@string/setting" />
 
+        <Button
+            android:id="@+id/noHideBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="NoHide"
+            android:text="noHide" />
+
+        <Button
+            android:id="@+id/hideBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="Hide"
+            android:text="hide" />
+
     </LinearLayout>
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp" />
+        android:layout_width="431dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="50dp">
+
+    </ListView>
 
     <ImageView
         android:id="@+id/ivAddItem"

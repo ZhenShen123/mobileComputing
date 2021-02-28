@@ -1,10 +1,15 @@
 package com.hw.hwauthenticate
 
 import android.app.DatePickerDialog
+import android.app.PendingIntent
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.hw.hwauthenticate.Bean.ToDoBean
 import com.hw.hwauthenticate.remind.RemindSQLiteHelper
 import com.hw.hwauthenticate.utils.ExpandUtils.toast
@@ -66,6 +71,22 @@ class EditActivity : AppCompatActivity() {
         mTodoBean = intent.getParcelableExtra(DATA_KEY)
         mTodoBean.let {
             edTodo.setText(mTodoBean?.details)
+        }
+    }
+
+    fun OpenNotification(view: View){
+
+        var intent = Intent(this, MainActivity::class.java)
+        val reminder = RemindSQLiteHelper.searchRemindDataByID(remindID)
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val builder = NotificationCompat.Builder(this, "channel1")
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle("message")
+                .setContentText(reminder.content)
+                .setPriority(NotificationCompat.PRIORITY_MAX )
+                .setContentIntent(pendingIntent)
+        with(NotificationManagerCompat.from(this)) {
+            notify(1, builder.build())
         }
     }
 

@@ -4,6 +4,8 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AbsListView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -38,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         ivAddItem.setOnClickListener {
             startActivityForResult(Intent(this@MainActivity, EditActivity::class.java), ADD_KEY)
         }
-        getListData()
+        getListData("noH")
         mToDoListAdapter = ToDoListAdapter(this, R.layout.item_todo, todoList)
         listView.adapter = mToDoListAdapter
         listView.setOnItemClickListener { parent, view, position, id ->
@@ -62,25 +64,45 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getListData() {
+    private fun getListData(string: String) {
         todoList.clear()
         val list = RemindSQLiteHelper.getAllList()
         val date = Date()
         list.forEach {
             date.time = it.time
-            todoList.add(
-                ToDoBean(
-                    it.id,
-                    it.isRemind == 1,
-                    SimpleDateFormat(
-                        "yyyy-MM-dd H:mm:ss",
-                        Locale.getDefault()
-                    ).format(date),
-                        it.content,
-                        it.location_x,
-                        it.location_y
+            if(string == "H"){
+                if (it.isRemind == 1){
+                    todoList.add(
+                            ToDoBean(
+                                    it.id,
+                                    it.isRemind == 1,
+                                    SimpleDateFormat(
+                                            "yyyy-MM-dd H:mm:ss",
+                                            Locale.getDefault()
+                                    ).format(date),
+                                    it.content,
+                                    it.location_x,
+                                    it.location_y
+                            )
+                    )
+
+                }
+            }else{
+                todoList.add(
+                        ToDoBean(
+                                it.id,
+                                it.isRemind == 0,
+                                SimpleDateFormat(
+                                        "yyyy-MM-dd H:mm:ss",
+                                        Locale.getDefault()
+                                ).format(date),
+                                it.content,
+                                it.location_x,
+                                it.location_y
+                        )
                 )
-            )
+
+            }
         }
     }
 
@@ -92,7 +114,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         mRemindHelper.onResume()
-        getListData()
+        getListData("noH")
         mToDoListAdapter.notifyDataSetChanged()
     }
 
@@ -100,5 +122,35 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         mRemindHelper.quit()
+    }
+
+    fun Hide(view: View)
+    {
+        RemindSQLiteHelper.init(this)
+        getListData("H")
+        mToDoListAdapter = ToDoListAdapter(this, R.layout.item_todo, todoList)
+        listView.adapter = mToDoListAdapter
+        listView.setOnItemClickListener { parent, view, position, id ->
+            val get = todoList[position]
+            val intent = Intent(this@MainActivity, EditActivity::class.java)
+            intent.putExtra(EditActivity.DATA_KEY, get)
+            itemPosition = position
+            startActivityForResult(intent, ADD_KEY)
+        }
+    }
+
+    fun NoHide(view: View)
+    {
+        RemindSQLiteHelper.init(this)
+        getListData("noH")
+        mToDoListAdapter = ToDoListAdapter(this, R.layout.item_todo, todoList)
+        listView.adapter = mToDoListAdapter
+        listView.setOnItemClickListener { parent, view, position, id ->
+            val get = todoList[position]
+            val intent = Intent(this@MainActivity, EditActivity::class.java)
+            intent.putExtra(EditActivity.DATA_KEY, get)
+            itemPosition = position
+            startActivityForResult(intent, ADD_KEY)
+        }
     }
 }
