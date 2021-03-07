@@ -22,7 +22,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
-
     private val mRequestCode = 110
     private var mFilePath: String? = null
     private var mBirthDay: String? = null
@@ -46,19 +45,13 @@ class RegisterActivity : AppCompatActivity() {
         if (TextUtils.isEmpty(result)) {
             result = ""
         }
-        //save user id key
         SpUtils.putString(Constants.USER_ID_KEY, "$result,$userId")
-        //save user name
         SpUtils.putString(Constants.USER_NAME_KEY + userId, rUsername.text.toString())
-        //save password
         SpUtils.putString(Constants.USER_PSW_KEY + userId, rUsername.text.toString())
-        //save current user id
         SpUtils.putString(Constants.CURRENT_USER_DATA_KEY, userId)
-        //save avatar
         if (mFilePath != null) {
             SpUtils.putString(Constants.USER_AVATAR_KEY + userId, mFilePath!!)
         }
-        //save birth
         if (mBirthDay != null) {
             SpUtils.putString(Constants.USER_BIRTH_KEY + userId, mBirthDay!!)
         }
@@ -84,7 +77,6 @@ class RegisterActivity : AppCompatActivity() {
         dataDialog.show()
     }
 
-
     fun selectPhoto(view: View) {
         val intent = Intent(
                 Intent.ACTION_PICK,
@@ -92,7 +84,6 @@ class RegisterActivity : AppCompatActivity() {
         )
         startActivityForResult(intent, mRequestCode)
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

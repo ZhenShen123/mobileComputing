@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "204671572176",
+    "project_id": "szsb-afb3e",
+    "storage_bucket": "szsb-afb3e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204671572176:android:2d270e675be89f8a7c66d5",
+        "android_client_info": {
+          "package_name": "com.hw.hwauthenticate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204671572176-i1e75a6oenlu1fuehd2jmb80ru7ng942.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlOLNISuyYgMz_V-F7aqNnoRoP2tWwigk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204671572176-i1e75a6oenlu1fuehd2jmb80ru7ng942.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

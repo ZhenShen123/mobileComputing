@@ -90,4 +90,16 @@ class EditActivity : AppCompatActivity() {
         }
     }
 
+    fun CurrentLocation(view: View)
+    {
+        val intent = Intent(this, MapsActivity2::class.java).apply {  }
+        startActivity(intent)
+    }
+
+    fun ReminderLocation(view: View)
+    {
+        val intent = Intent(this, MapsActivity::class.java).apply {  }
+        startActivity(intent)
+    }
+
 }

@@ -86,4 +86,18 @@
         android:onClick="OpenNotification"
         android:text="onNotifications" />
 
+    <Button
+        android:id="@+id/locationRBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ReminderLocation"
+        android:text="ReminderLocation" />
+
+    <Button
+        android:id="@+id/locationCBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="CurrentLocation"
+        android:text="CurrentLocation" />
+
 </LinearLayout>
